@@ -19,6 +19,7 @@ type UntypedArc = Arc<()>;
 
 /// [Type constructors](https://en.wikipedia.org/wiki/Type_constructor) for
 /// [`Arc`] pointers.
+#[derive(Clone, PartialEq, Eq)]
 pub struct ArcK {
     /// We use [`ManuallyDrop`] here, so that we can drop it explicitly as
     /// [`Arc<T>`](alloc::sync::Arc).  Not sure if it can be dropped as [`UntypedArc`], but it
