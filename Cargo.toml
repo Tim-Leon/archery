@@ -38,6 +38,8 @@ static_assertions = "1.1.0"
 fatal-warnings = []
 triomphe = ["dep:triomphe"]
 serde = ["dep:serde"]
+full = ["serde", "triomphe"]
+default = ["full"]
 
 [lints.clippy]
 all = { level = "warn", priority = -2 }

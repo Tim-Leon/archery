@@ -138,5 +138,33 @@ impl Debug for ArcK {
     }
 }
 
+#[cfg(feature = "serde")]
+mod serde {
+    use serde::{Deserialize, Serialize};
+    use serde::de::{Error, Unexpected};
+    use crate::{ArcK, SharedPointerKind};
+
+    impl Serialize for ArcK {
+        fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: serde::Serializer,
+        {
+            serializer.serialize_unit() // Just write nothing
+        }
+    }
+
+    impl<'de> Deserialize<'de> for ArcK {
+        fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+        where
+            D: serde::Deserializer<'de>,
+        {
+            let _ = <()>::deserialize(deserializer)?; // Expect unit type
+
+            // Fail intentionally: this should never happen
+            Err(D::Error::invalid_type(Unexpected::Unit, &"RcK should not be deserialized"))
+        }
+    }
+}
+
 #[cfg(test)]
 mod test;

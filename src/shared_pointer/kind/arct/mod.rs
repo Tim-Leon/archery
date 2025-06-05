@@ -123,5 +123,13 @@ impl Debug for ArcTK {
     }
 }
 
+impl PartialEq for ArcTK {
+    fn eq(&self, other: &Self) -> bool {
+        self.inner == other.inner
+    }
+}
+
+impl Eq for ArcTK {}
+
 #[cfg(test)]
 mod test;
