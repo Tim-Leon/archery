@@ -139,7 +139,7 @@ impl Debug for ArcK {
 }
 
 #[cfg(feature = "serde")]
-mod serde {
+pub mod serde {
     use serde::{Deserialize, Serialize};
     use serde::de::{Error, Unexpected};
     use crate::{ArcK, SharedPointerKind};
