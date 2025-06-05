@@ -52,10 +52,10 @@ pub unsafe trait SharedPointerKind: Sized + Debug + PartialEq + Eq {
     unsafe fn drop<T>(&mut self);
 }
 
-mod arc;
+pub mod arc;
 #[cfg(feature = "triomphe")]
-mod arct;
-mod rc;
+pub mod arct;
+pub mod rc;
 
 use alloc::boxed::Box;
 #[doc(inline)]
