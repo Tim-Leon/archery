@@ -38,7 +38,7 @@ use core::fmt::Debug;
 // `Send + Sync` unless `T: Send + Sync`.  This is holds true for `SharedPointer` since it has a
 // phantom field with `T`, thus the compiler will only make `SharedPointer<T>` implement
 // `Send + Sync` if `T: Send + Sync`.
-pub unsafe trait SharedPointerKind: Sized + Debug {
+pub unsafe trait SharedPointerKind: Sized + Debug + PartialEq + Eq {
     fn new<T>(v: T) -> Self;
     fn from_box<T>(v: Box<T>) -> Self;
     unsafe fn as_ptr<T>(&self) -> *const T;

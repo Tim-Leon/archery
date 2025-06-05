@@ -122,6 +122,13 @@ unsafe impl SharedPointerKind for RcK {
     }
 }
 
+impl PartialEq for RcK {
+    fn eq(&self, other: &Self) -> bool {
+        self.inner == other.inner
+    }
+}
+impl Eq for RcK {}
+
 impl Debug for RcK {
     #[inline(always)]
     fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
